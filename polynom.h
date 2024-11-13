@@ -16,7 +16,7 @@ public:
     // Функция для нахождения значения многочлена при заданном x
     double evaluate(double x) const;
 
-    // Сложение двух многочленов
+    // Математические операции для многочлена
     Polynom& operator =(const Polynom& r);
     Polynom& operator +=(const Polynom& r);
     Polynom& operator -=(const Polynom& r);
@@ -34,6 +34,8 @@ public:
 
     // Вывод многочлена
     friend std::ostream& operator<<(std::ostream& os, const Polynom& poly);
+    // Производная
     Polynom derivative(int order = 1);
+    // Интегрирование
     Polynom integrate();
 };
