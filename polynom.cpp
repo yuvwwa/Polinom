@@ -2,15 +2,16 @@
 #include <vector>
 using namespace std;
 
+// Конструктор
 Polynom::Polynom() {
     power = 0;
 }
-// Конструктор
 Polynom::Polynom(const vector<double>& coef) {
     coefficients = coef;
     update_coef();
 }
 
+// Функция для обновления степени
 void Polynom::update_coef() {
     power = coefficients.size() - 1;
 }
@@ -24,13 +25,14 @@ double Polynom::evaluate(double x) const {
     return result;
 }
 
+// Равно 
 Polynom& Polynom::operator =(const Polynom& r) {
     coefficients = r.coefficients;
     power = r.power;
     return *this;
 }
 
-// Сложение двух многочленов
+// Сложение
 Polynom Polynom::operator +(const Polynom& other) const {
     Polynom copy_poly(*this);
     return copy_poly+=other;
@@ -51,7 +53,7 @@ Polynom& Polynom::operator +=(const Polynom& other) {
     return *this;
 }
 
-// Вычитание двух многочленов
+// Вычитание
 Polynom Polynom::operator -(const Polynom& other) const {
     Polynom copy_poly(*this);
     return copy_poly-=other;
@@ -76,7 +78,7 @@ Polynom& Polynom::operator -=(const Polynom& other) {
 }
 
 
-// Умножение двух многочленов
+// Умножение
 Polynom Polynom::operator *(const Polynom& other) const {
     Polynom copy_pol(*this);
     return copy_pol *= other;
@@ -97,7 +99,7 @@ Polynom& Polynom::operator *=(const Polynom& other) {
     return *this;
 }
 
-// Деление многочленов (деление на скаляр)
+// Деление многочленов
 Polynom& Polynom::operator /=(const Polynom& divisor) {
     if (divisor.power == 0 && divisor.coefficients[0] == 0) {
         throw runtime_error("Division by zero Polynom");
@@ -139,7 +141,7 @@ Polynom Polynom::operator /(const Polynom& divisor) const {
     return result /= divisor;
 }
 
-//производная
+// Производная
 Polynom Polynom::derivative(int order){
     vector<double> result = coefficients;
     
@@ -171,6 +173,7 @@ Polynom Polynom::integrate(){
     return *this;
 }
 
+// Вывод 
 std::ostream& operator<<(std::ostream& os, const Polynom& poly) {
     bool first = true;
     for (int i = poly.power; i >= 0; --i) {
